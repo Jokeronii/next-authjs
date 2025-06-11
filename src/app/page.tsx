@@ -1,13 +1,16 @@
-import { auth } from '@/lib/auth';
+import SignInButton from '@/components/SignInButton';
+import { auth } from '@/auth';
+import SignOutButton from '@/components/SignOutButton';
+import Image from 'next/image';
 
 export default async function Home() {
   const session = await auth();
 
   if (!session) {
     return (
-      <main>
-        <h1>Not signed in</h1>
-        <p>please sign in</p>
+      <main className="w-screen h-dvh grid grid-rows-2 place-items-center">
+        <h1>Please sign in</h1>
+        <SignInButton />
       </main>
     );
   }
@@ -15,6 +18,10 @@ export default async function Home() {
   return (
     <main>
       <h1>{JSON.stringify(session)}</h1>
+      <p>username: {session.user?.name}</p>
+      <p>username: {session.user?.email}</p>
+      <Image src={session.user?.image || ''} alt={session.user?.name || ''} width={100} height={100} />
+      <SignOutButton />
     </main>
   );
 }
