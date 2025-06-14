@@ -17,7 +17,6 @@ export default async function Home() {
 
   return (
     <main>
-      <h1>{JSON.stringify(session)}</h1>
       <p>username: {session.user?.name}</p>
       <p>username: {session.user?.email}</p>
       <Image src={session.user?.image || ''} alt={session.user?.name || ''} width={100} height={100} />
