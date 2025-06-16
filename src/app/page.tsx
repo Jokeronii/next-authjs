@@ -1,26 +1,22 @@
-import SignInButton from '@/components/SignInButton';
 import { auth } from '@/auth';
-import SignOutButton from '@/components/SignOutButton';
-import Image from 'next/image';
+import { SignInForm } from '@/components/SignInForm';
 
 export default async function Home() {
   const session = await auth();
 
-  if (!session) {
+  if (!session?.user) {
     return (
       <main className="w-screen h-dvh grid grid-rows-2 place-items-center">
-        <h1>Please sign in</h1>
-        <SignInButton />
+        <SignInForm />
       </main>
     );
   }
 
   return (
-    <main>
-      <p>username: {session.user?.name}</p>
-      <p>username: {session.user?.email}</p>
-      <Image src={session.user?.image || ''} alt={session.user?.name || ''} width={100} height={100} />
-      <SignOutButton />
+    <main className="grid grid-cols-3">
+      <div>
+        <h1>main content</h1>
+      </div>
     </main>
   );
 }
