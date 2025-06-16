@@ -13,10 +13,12 @@ export default async function Home() {
   }
 
   return (
-    <main className="grid grid-cols-3">
-      <div>
-        <h1>main content</h1>
-      </div>
+
+    <main>
+      <p>username: {session.user?.name}</p>
+      <p>username: {session.user?.email}</p>
+      <Image src={session.user?.image || ''} alt={session.user?.name || ''} width={100} height={100} />
+      <SignOutButton />
     </main>
   );
 }
